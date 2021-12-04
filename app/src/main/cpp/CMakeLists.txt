@@ -9,6 +9,9 @@ cmake_minimum_required(VERSION 3.10.2)
 
 project("opengles")
 
+add_subdirectory(glm)
+
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -21,7 +24,19 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        MyGLRenderer-Native.cpp)
+        native-main.cpp
+        AssetManager.h
+        AssetManager.cpp
+        Renderer.h
+        Renderer.cpp
+        Shader.h
+        Objects/Object.h
+        Objects/Object.cpp
+        Camera.h
+        Objects/Triangle.h
+        Objects/Cube.h
+        Objects/Plane.h)
+
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -44,6 +59,9 @@ target_link_libraries( # Specifies the target library.
         opengles
         EGL
         GLESv3
+        glm
+
+        android
 
         # Links the target library to the log library
         # included in the NDK.
