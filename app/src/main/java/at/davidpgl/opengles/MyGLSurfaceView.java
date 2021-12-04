@@ -2,6 +2,7 @@ package at.davidpgl.opengles;
 
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 
