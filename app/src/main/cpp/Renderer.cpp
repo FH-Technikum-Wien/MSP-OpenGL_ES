@@ -3,6 +3,7 @@
 #include <jni.h>
 #include <android/log.h>
 #include <GLES3/gl3.h>
+#include "OBJ_Loader.h"
 
 
 #undef LOG_TAG
@@ -13,7 +14,6 @@
 
 Renderer::~Renderer() {
     delete cube;
-    delete ground;
 }
 
 void Renderer::SetScreenSize(const float width, const float height) {
@@ -35,8 +35,7 @@ void Renderer::Render() {
     glViewport(0, 0, screenWidth, screenHeight);
 
     cube->Render(shader);
-    cube->Rotate(glm::vec3(0, 1, 0));
-    //ground->Render(shader);
+    cube->Rotate(glm::vec3(0.5f, 1, 0));
 }
 
 void Renderer::Initialize(AssetManager &assetManager) {
@@ -44,7 +43,6 @@ void Renderer::Initialize(AssetManager &assetManager) {
     glEnable(GL_DEPTH_TEST);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     cube = new Cube(glm::vec3(0, 0, 0), glm::vec3(0, 45, 0));
-    ground = new Plane(glm::vec3(0,-2,-2), glm::vec3(90,0,0), glm::vec3(4));
 
     char* vertexShaderCode = assetManager.GetAsset("Shaders/Shader.vert");
     char* fragmentShaderCode = assetManager.GetAsset("Shaders/Shader.frag");
@@ -55,5 +53,4 @@ void Renderer::Initialize(AssetManager &assetManager) {
 
     delete vertexShaderCode;
     delete fragmentShaderCode;
-
 }

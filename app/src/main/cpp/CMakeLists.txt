@@ -24,15 +24,17 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
+        OBJ_Loader.h
+
         native-main.cpp
         AssetManager.h
         AssetManager.cpp
         Renderer.h
         Renderer.cpp
         Shader.h
+        Camera.h
         Objects/Object.h
         Objects/Object.cpp
-        Camera.h
         Objects/Triangle.h
         Objects/Cube.h
         Objects/Plane.h)

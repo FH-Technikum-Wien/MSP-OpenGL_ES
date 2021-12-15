@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.GLSurfaceView;
 
+import java.io.InputStream;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -16,7 +18,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         activityContext = context;
         this.assetManager = context.getResources().getAssets();
     }
-
 
 
     @Override
@@ -35,11 +36,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     }
 
 
+    public native void onSurfaceCreatedNative(GL10 gl10, EGLConfig eglConfig, AssetManager assetManager);
 
-
-
-    public native void onSurfaceCreatedNative(GL10 gl10,EGLConfig eglConfig, AssetManager assetManager);
     public native void onSurfaceChangedNative(GL10 gl10, int width, int height);
+
     public native void onDrawFrameNative(GL10 gl10);
 
 }

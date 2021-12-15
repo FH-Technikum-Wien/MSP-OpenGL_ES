@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Objects/Plane.h>
+#include "Objects/Plane.h"
 #include "Shader.h"
 #include "Objects/Cube.h"
 #include "Camera.h"
@@ -20,7 +20,6 @@ public:
 
 private:
     Cube *cube;
-    Plane *ground;
     Shader shader;
     Camera camera = Camera(glm::vec3(0, 4, 10), glm::vec3(-15,0,0));
 
