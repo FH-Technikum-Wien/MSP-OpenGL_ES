@@ -19,7 +19,7 @@ public:
 
     void SetScreenSize(const float screenWidth, const float screenHeight) {
         ProjectionMat = glm::perspective(glm::radians(45.0f), screenWidth / screenHeight, 0.1f,
-                                         100.0f);
+                                         500.0f);
     }
 
     glm::mat4 GetViewMat() const {

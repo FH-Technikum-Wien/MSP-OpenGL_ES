@@ -37,6 +37,6 @@ public:
         vertexCount = 3;
         indexCount = 3;
 
-        initialize();
+        Initialize();
     }
 };

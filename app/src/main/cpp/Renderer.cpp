@@ -3,6 +3,7 @@
 #include <jni.h>
 #include <android/log.h>
 #include <GLES3/gl3.h>
+
 #include "OBJ_Loader.h"
 
 
@@ -11,9 +12,11 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
+objl::Loader loader;
+
 
 Renderer::~Renderer() {
-    delete cube;
+    delete object;
 }
 
 void Renderer::SetScreenSize(const float width, const float height) {
@@ -34,15 +37,14 @@ void Renderer::Render() {
 
     glViewport(0, 0, screenWidth, screenHeight);
 
-    cube->Render(shader);
-    cube->Rotate(glm::vec3(0.5f, 1, 0));
+    object->Render(shader);
+    //cube->Rotate(glm::vec3(0.5f, 1, 0));
 }
 
 void Renderer::Initialize(AssetManager &assetManager) {
     LOGI("Current OpenGLES Version: %s", glGetString(GL_VERSION));
     glEnable(GL_DEPTH_TEST);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    cube = new Cube(glm::vec3(0, 0, 0), glm::vec3(0, 45, 0));
 
     char* vertexShaderCode = assetManager.GetAsset("Shaders/Shader.vert");
     char* fragmentShaderCode = assetManager.GetAsset("Shaders/Shader.frag");
@@ -54,8 +56,35 @@ void Renderer::Initialize(AssetManager &assetManager) {
     delete vertexShaderCode;
     delete fragmentShaderCode;
 
-    objl::Loader loader;
+    loader.LoadFile("Resources/cottage_obj.obj", assetManager);
 
-    bool loadout = loader.LoadFile("Resources/cottage_obj.obj", assetManager);
-    loader.LoadedVertices;
+    // Convert obj-object to internal object
+    std::vector<float>* vertices = new std::vector<float>();
+    std::vector<float>* normals = new std::vector<float>();
+    std::vector<float>* uvs = new std::vector<float>();
+    for (const objl::Vertex& vertex : loader.LoadedVertices)
+    {
+        vertices->push_back(vertex.Position.X);
+        vertices->push_back(vertex.Position.Y);
+        vertices->push_back(vertex.Position.Z);
+
+        normals->push_back(vertex.Normal.X);
+        normals->push_back(vertex.Normal.Y);
+        normals->push_back(vertex.Normal.Z);
+
+        uvs->push_back(vertex.TextureCoordinate.X);
+        uvs->push_back(vertex.TextureCoordinate.Y);
+    }
+
+    std::vector<unsigned int>* indices = new std::vector<unsigned int>(loader.LoadedIndices);
+
+    object = new Object(glm::vec3(0, -20, -80), glm::vec3(0, 60, 0), glm::vec3(1));
+    object->vertices = vertices->data();
+    object->normals = normals->data();
+    object->indices = indices->data();
+    object->uvs = uvs->data();
+
+    object->vertexCount = vertices->size();
+    object->indexCount = indices->size();
+    object->Initialize();
 }

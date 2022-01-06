@@ -47,6 +47,6 @@ public:
         vertexCount = 6;
         indexCount = 6;
 
-        initialize();
+        Initialize();
     }
 };

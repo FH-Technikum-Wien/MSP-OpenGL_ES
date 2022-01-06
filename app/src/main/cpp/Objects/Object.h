@@ -10,25 +10,21 @@ public:
     float* uvs{};
     unsigned int* indices{};
 
+    unsigned int vertexCount = 0;
+    unsigned int indexCount = 0;
+
 public:
     Object(const glm::vec3 position, const glm::vec3 eulerAngles, const glm::vec3 scaleFactor);
 
     ~Object();
 
-    void Render(const Shader& shader) const;
+    void Initialize();
 
+    void Render(const Shader& shader) const;
 
     void Translate(glm::vec3 translation);
     void Scale(glm::vec3 scaleFactor);
     void Rotate(glm::vec3 eulerAngles);
-
-
-protected:
-    unsigned int vertexCount = 0;
-    unsigned int indexCount = 0;
-
-protected:
-    void initialize();
 
 private:
     unsigned int VAO = 0;

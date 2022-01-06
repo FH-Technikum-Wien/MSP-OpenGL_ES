@@ -164,6 +164,6 @@ public:
         vertexCount = 36;
         indexCount = 36;
 
-        initialize();
+        Initialize();
     }
 };

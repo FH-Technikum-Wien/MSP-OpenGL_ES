@@ -23,7 +23,7 @@ void Object::Render(const Shader &shader) const {
     glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
 }
 
-void Object::initialize() {
+void Object::Initialize() {
     // Generate Vertex-Array-Object to store vertex attribute configuration and which VBO(s) to use
     glGenVertexArrays(1, &VAO);
     // Bind Vertex-Array-Object to configure VBO(s)
