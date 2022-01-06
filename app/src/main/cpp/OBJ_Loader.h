@@ -17,6 +17,9 @@
 // Math.h - STD math Library
 #include <math.h>
 
+/// Custom include for OpenGLES-NativeCPP
+#include "AssetManager.h"
+
 // Print progress to console while loading (large models)
 #define OBJL_CONSOLE_OUTPUT
 
@@ -428,17 +431,18 @@ namespace objl
 		//
 		// If the file is unable to be found
 		// or unable to be loaded return false
-		bool LoadFile(std::string Path)
+		bool LoadFile(std::string Path, AssetManager& assetManager)
 		{
 			// If the file is not an .obj file return false
 			if (Path.substr(Path.size() - 4, 4) != ".obj")
 				return false;
 
+			char* asset = assetManager.GetAsset(Path.c_str());
+			long length = assetManager.GetAssetLength(Path.c_str());
 
-			std::ifstream file(Path);
-
-			if (!file.is_open())
-				return false;
+			std::stringstream file;
+			std::string asString(asset, length);
+			file.str(std::string(asString));
 
 			LoadedMeshes.clear();
 			LoadedVertices.clear();
@@ -663,7 +667,7 @@ namespace objl
 					#endif
 
 					// Load Materials
-					LoadMaterials(pathtomat);
+					LoadMaterials(pathtomat, assetManager);
 				}
 			}
 
@@ -683,7 +687,7 @@ namespace objl
 				LoadedMeshes.push_back(tempMesh);
 			}
 
-			file.close();
+			delete asset;
 
 			// Set Materials for each Mesh
 			for (int i = 0; i < MeshMatNames.size(); i++)
@@ -1003,17 +1007,18 @@ namespace objl
 		}
 
 		// Load Materials from .mtl file
-		bool LoadMaterials(std::string path)
+		bool LoadMaterials(std::string path, AssetManager& assetManager)
 		{
 			// If the file is not a material file return false
 			if (path.substr(path.size() - 4, path.size()) != ".mtl")
 				return false;
 
-			std::ifstream file(path);
 
-			// If the file is not found return false
-			if (!file.is_open())
-				return false;
+			char* asset = assetManager.GetAsset(path.c_str());
+			long length = assetManager.GetAssetLength(path.c_str());
+			std::stringstream file;
+			std::string asString(asset, length);
+			file.str(asString);
 
 			Material tempMaterial;
 
@@ -1149,6 +1154,8 @@ namespace objl
 					tempMaterial.map_bump = algorithm::tail(curline);
 				}
 			}
+
+			delete asset;
 
 			// Deal with last material
 

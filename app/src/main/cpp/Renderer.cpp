@@ -53,4 +53,9 @@ void Renderer::Initialize(AssetManager &assetManager) {
 
     delete vertexShaderCode;
     delete fragmentShaderCode;
+
+    objl::Loader loader;
+
+    bool loadout = loader.LoadFile("Resources/cottage_obj.obj", assetManager);
+    loader.LoadedVertices;
 }

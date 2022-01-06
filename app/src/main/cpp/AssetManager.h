@@ -11,6 +11,7 @@ public:
     AssetManager() = default;
 
     void Initialize(AAssetManager* assetManager);
+    long GetAssetLength(const char* assetPath);
     char* GetAsset(const char* assetPath);
 
 private:

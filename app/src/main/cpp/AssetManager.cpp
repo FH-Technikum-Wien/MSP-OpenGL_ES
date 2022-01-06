@@ -9,6 +9,12 @@ void AssetManager::Initialize(AAssetManager *assetManager) {
     aAssetManager = assetManager;
 }
 
+long AssetManager::GetAssetLength(const char *assetPath){
+    AAsset *asset = AAssetManager_open(aAssetManager, assetPath, AASSET_MODE_BUFFER);
+
+    return AAsset_getLength(asset) + 1;
+}
+
 char *AssetManager::GetAsset(const char *assetPath) {
     AAsset *asset = AAssetManager_open(aAssetManager, assetPath, AASSET_MODE_BUFFER);
 
