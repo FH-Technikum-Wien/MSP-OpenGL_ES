@@ -14,11 +14,17 @@ public:
 
     void Initialize(AssetManager &assetManager);
 
+    void LoadNormal();
+
+    void LoadBinary();
+
     void SetScreenSize(float screenWidth, float screenHeight);
 
     void Render();
 
 private:
+    AssetManager assetManager;
+
     Shader shader;
     Camera camera = Camera(glm::vec3(0, 4, 10), glm::vec3(-15,0,0));
 

@@ -42,6 +42,7 @@ void Renderer::Render() {
 }
 
 void Renderer::Initialize(AssetManager &assetManager) {
+    this->assetManager = assetManager;
     LOGI("Current OpenGLES Version: %s", glGetString(GL_VERSION));
     glEnable(GL_DEPTH_TEST);
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -49,13 +50,19 @@ void Renderer::Initialize(AssetManager &assetManager) {
     char* vertexShaderCode = assetManager.GetAsset("Shaders/Shader.vert");
     char* fragmentShaderCode = assetManager.GetAsset("Shaders/Shader.frag");
 
+    char* data = assetManager.GetAsset("Resources/cottage_obj.bin");
+
+    std::strtol(data, nullptr, 2);
+
     shader.AddShader(vertexShaderCode, VERTEX_SHADER);
     shader.AddShader(fragmentShaderCode, FRAGMENT_SHADER);
     shader.linkProgram();
 
     delete vertexShaderCode;
     delete fragmentShaderCode;
+}
 
+void Renderer::LoadNormal() {
     loader.LoadFile("Resources/cottage_obj.obj", assetManager);
 
     // Convert obj-object to internal object
@@ -92,4 +99,8 @@ void Renderer::Initialize(AssetManager &assetManager) {
     object->Initialize();
 
     delete texture;
+}
+
+void Renderer::LoadBinary() {
+
 }

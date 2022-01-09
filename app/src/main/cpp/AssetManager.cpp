@@ -31,6 +31,18 @@ char *AssetManager::GetAsset(const char *assetPath) {
     return fileContent;
 }
 
+const char *AssetManager::GetBinaryAsset(const char *assetPath) {
+    AAsset *asset = AAssetManager_open(aAssetManager, assetPath, AASSET_MODE_BUFFER);
+
+    off_t fileLength = AAsset_getLength(asset);
+
+    const char* fileContent = static_cast<const char*>(AAsset_getBuffer(asset));
+
+    AAsset_close(asset);
+
+    return fileContent;
+}
+
 
 
 
