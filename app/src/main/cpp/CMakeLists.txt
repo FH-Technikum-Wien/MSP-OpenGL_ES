@@ -31,8 +31,11 @@ add_library( # Sets the name of the library.
         native-main.cpp
         AssetManager.h
         AssetManager.cpp
+        Application.h
+        Application.cpp
         Renderer.h
         Renderer.cpp
+
         Shader.h
         Camera.h
         Objects/Object.h
