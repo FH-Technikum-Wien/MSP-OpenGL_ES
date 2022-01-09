@@ -27,13 +27,14 @@ public:
     }
 
 private:
+    // First couple of chars defining the file compression
     char etc2Magic[6] = {
-            0x50, //'P'
-            0x4B, //'K'
-            0x4D, //'M'
-            0x20, //' '
-            0x32, //'2'
-            0x30  //'0'
+            'P',
+            'K',
+            'M',
+            ' ',
+            '2',
+            '0'
     };
     // Both ETC1 and ETC2 have the same header size
     static const int ETC_PKM_HEADER_SIZE = 16;
