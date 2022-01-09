@@ -78,7 +78,9 @@ void Renderer::Initialize(AssetManager &assetManager) {
 
     std::vector<unsigned int>* indices = new std::vector<unsigned int>(loader.LoadedIndices);
 
-    object = new Object(glm::vec3(0, -20, -80), glm::vec3(0, 60, 0), glm::vec3(1));
+    char* texture = assetManager.GetAsset("textures#tcf_etc2/wood.pkm");
+    Material material = Material(texture);
+    object = new Object(material, glm::vec3(0, -20, -80), glm::vec3(0, 60, 0), glm::vec3(1));
     object->vertices = vertices->data();
     object->normals = normals->data();
     object->indices = indices->data();
@@ -86,5 +88,9 @@ void Renderer::Initialize(AssetManager &assetManager) {
 
     object->vertexCount = vertices->size();
     object->indexCount = indices->size();
+
+
     object->Initialize();
+
+    //delete texture;
 }

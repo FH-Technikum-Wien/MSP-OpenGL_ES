@@ -14,6 +14,18 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
+// See: https://arm-software.github.io/opengl-es-sdk-for-android/jni_2_astc_textures_8h_source.html
+#define GL_CHECK(x)																				\
+	x;																							\
+	{                                                                                           \
+        GLenum glError = glGetError();                                                          \
+        if(glError != GL_NO_ERROR)                                                              \
+        {                                                                                       \
+            LOGE("glGetError() = %i (%#.8x) at %s:%i\n", glError, glError, __FILE__, __LINE__); \
+            exit(EXIT_FAILURE);                                                                 \
+        }                                                                                       \
+    }
+
 
 enum ShaderType
 {

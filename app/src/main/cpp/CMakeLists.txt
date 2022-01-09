@@ -26,6 +26,8 @@ add_library( # Sets the name of the library.
         # Provides a relative path to your source file(s).
         OBJ_Loader.h
 
+        ETC2.h
+
         native-main.cpp
         AssetManager.h
         AssetManager.cpp
@@ -37,7 +39,9 @@ add_library( # Sets the name of the library.
         Objects/Object.cpp
         Objects/Triangle.h
         Objects/Cube.h
-        Objects/Plane.h)
+        Objects/Plane.h
+        Material.h
+        Material.cpp)
 
 
 # Searches for a specified prebuilt library and stores the path as a

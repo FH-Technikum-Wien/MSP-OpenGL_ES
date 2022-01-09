@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Material.h"
 #include "Shader.h"
 
 
@@ -13,8 +15,10 @@ public:
     unsigned int vertexCount = 0;
     unsigned int indexCount = 0;
 
+    Material material;
+
 public:
-    Object(const glm::vec3 position, const glm::vec3 eulerAngles, const glm::vec3 scaleFactor);
+    Object(Material material, const glm::vec3 position, const glm::vec3 eulerAngles, const glm::vec3 scaleFactor);
 
     ~Object();
 

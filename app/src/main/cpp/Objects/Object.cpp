@@ -1,11 +1,12 @@
 #include "Object.h"
 #include <jni.h>
 
-Object::Object(const glm::vec3 position, const glm::vec3 eulerAngles,
+Object::Object(Material material, const glm::vec3 position, const glm::vec3 eulerAngles,
                const glm::vec3 scaleFactor) {
     Translate(position);
     Rotate(eulerAngles);
     Scale(scaleFactor);
+    this->material = material;
 }
 
 Object::~Object() {
@@ -16,6 +17,10 @@ Object::~Object() {
 }
 
 void Object::Render(const Shader &shader) const {
+    // Add texture
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, material.texture);
+
     glBindVertexArray(VAO);
     shader.setMat4("modelMat", transform);
 

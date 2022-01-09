@@ -4,12 +4,15 @@
 
 class Plane : public Object {
 public:
-    Plane(glm::vec3 position, glm::vec3 eulerAngles) : Plane(position, eulerAngles, glm::vec3(1)) {
+    Plane(Material material, glm::vec3 position, glm::vec3 eulerAngles) : Plane(material, position,
+                                                                                eulerAngles,
+                                                                                glm::vec3(1)) {
     }
 
-    Plane(glm::vec3 position, glm::vec3 eulerAngles, glm::vec3 scale) : Object(position,
-                                                                               eulerAngles,
-                                                                               scale) {
+    Plane(Material material, glm::vec3 position, glm::vec3 eulerAngles, glm::vec3 scale) : Object(
+            material, position,
+            eulerAngles,
+            scale) {
         glm::vec3 texScale = glm::vec3(scale);
 
         vertices = new float[18]{

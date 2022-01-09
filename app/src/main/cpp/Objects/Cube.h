@@ -4,11 +4,14 @@
 
 class Cube : public Object {
 public:
-    Cube(glm::vec3 position, glm::vec3 eulerAngles) : Cube(position, eulerAngles, glm::vec3(1)) {
+    Cube(Material material, glm::vec3 position, glm::vec3 eulerAngles) : Cube(material, position,
+                                                                              eulerAngles,
+                                                                              glm::vec3(1)) {
     }
 
-    Cube(glm::vec3 position, glm::vec3 eulerAngles, glm::vec3 scale) : Object(position, eulerAngles,
-                                                                              scale) {
+    Cube(Material material, glm::vec3 position, glm::vec3 eulerAngles, glm::vec3 scale) : Object(
+            material, position, eulerAngles,
+            scale) {
         glm::vec3 texScale = glm::vec3(scale);
 
         vertices = new float[108]{
