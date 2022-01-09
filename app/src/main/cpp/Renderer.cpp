@@ -82,7 +82,6 @@ void Renderer::Initialize(AssetManager &assetManager) {
     Material material = Material(texture);
     object = new Object(material, glm::vec3(0, -20, -80), glm::vec3(0, 60, 0), glm::vec3(1));
     object->vertices = vertices->data();
-    object->normals = normals->data();
     object->indices = indices->data();
     object->uvs = uvs->data();
 

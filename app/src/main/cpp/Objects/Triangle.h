@@ -22,12 +22,6 @@ public:
                 1.0f, 1.0f, 0.0f,
         };
 
-        normals = new float[9]{
-                0.0f, 0.0f, -1.0f,
-                0.0f, 0.0f, -1.0f,
-                0.0f, 0.0f, -1.0f,
-        };
-
         uvs = new float[6]{
                 scale.x, 0.0f,
                 scale.x, scale.y,

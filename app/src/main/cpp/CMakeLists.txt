@@ -40,6 +40,8 @@ add_library( # Sets the name of the library.
         Camera.h
         Objects/Object.h
         Objects/Object.cpp
+        Objects/FasterObject.h
+        Objects/FasterObject.cpp
         Objects/Triangle.h
         Objects/Cube.h
         Objects/Plane.h

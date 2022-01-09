@@ -24,15 +24,6 @@ public:
                 1.0f, 1.0f, 0.0f,
         };
 
-        normals = new float[18]{
-                0.0f, 0.0f, 1.0f,
-                0.0f, 0.0f, 1.0f,
-                0.0f, 0.0f, 1.0f,
-                0.0f, 0.0f, 1.0f,
-                0.0f, 0.0f, 1.0f,
-                0.0f, 0.0f, 1.0f,
-        };
-
         uvs = new float[12]{
                 0.0f, texScale.y,
                 0.0f, 0.0f,

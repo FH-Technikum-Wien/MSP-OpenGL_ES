@@ -1,10 +1,8 @@
 #version 300 es
 // Position with vertex attribute position 0
 layout (location = 0) in vec3 aPos;
-// Normals
-layout (location = 1) in vec3 aNormal;
 // Texture
-layout (location = 2) in vec2 aTexCoord;
+layout (location = 1) in vec2 aTexCoord;
 
 
 // Local to World
