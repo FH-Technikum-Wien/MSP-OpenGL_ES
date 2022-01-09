@@ -92,5 +92,5 @@ void Renderer::Initialize(AssetManager &assetManager) {
 
     object->Initialize();
 
-    //delete texture;
+    delete texture;
 }

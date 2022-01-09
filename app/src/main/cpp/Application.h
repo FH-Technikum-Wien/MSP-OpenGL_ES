@@ -18,6 +18,10 @@ private:
     std::chrono::steady_clock::time_point lastFrameTime;
     double fixedUpdateAccumulator = 0.0f;
 
+    double deltaAccumulator = 0.0f;
+    double averageFrameTime = 0.0f;
+    int frames = 0;
+
 private:
     // The fixed time step used for the physics calculation.
     const double FIXED_DELTA_TIME = 1.0f / 100.0f;
