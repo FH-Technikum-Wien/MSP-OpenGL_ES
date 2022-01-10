@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Objects/FasterObject.h>
 #include "Objects/Plane.h"
 #include "Shader.h"
 #include "Objects/Cube.h"
@@ -28,7 +29,8 @@ private:
     Shader shader;
     Camera camera = Camera(glm::vec3(0, 4, 10), glm::vec3(-15,0,0));
 
-    Object* object;
+    Object* object = nullptr;
+    FasterObject* fasterObject = nullptr;
 
     float screenWidth = 0.0f;
     float screenHeight = 0.0f;

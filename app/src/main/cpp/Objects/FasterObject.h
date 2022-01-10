@@ -7,7 +7,7 @@
 class FasterObject {
 public:
     glm::mat4 transform = glm::mat4(1.0f);
-    char* data;
+    float* data;
     unsigned int* indices{};
 
     unsigned int vertexCount = 0;

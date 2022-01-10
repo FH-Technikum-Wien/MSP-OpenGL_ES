@@ -13,7 +13,7 @@ public:
     void Initialize(AAssetManager* assetManager);
     long GetAssetLength(const char* assetPath);
     char* GetAsset(const char* assetPath);
-    const char* GetBinaryAsset(const char* assetPath);
+    char* GetBinaryAsset(const char* assetPath);
 
 private:
     AAssetManager* aAssetManager;

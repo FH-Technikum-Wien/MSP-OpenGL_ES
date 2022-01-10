@@ -17,6 +17,7 @@ objl::Loader loader;
 
 Renderer::~Renderer() {
     delete object;
+    delete fasterObject;
 }
 
 void Renderer::SetScreenSize(const float width, const float height) {
@@ -36,9 +37,10 @@ void Renderer::Render() {
     shader.setMat4("viewMat", camera.GetViewMat());
 
     glViewport(0, 0, screenWidth, screenHeight);
-
-    object->Render(shader);
-    //cube->Rotate(glm::vec3(0.5f, 1, 0));
+    if(object != nullptr)
+        object->Render(shader);
+    else if(fasterObject != nullptr)
+        fasterObject->Render(shader);
 }
 
 void Renderer::Initialize(AssetManager &assetManager) {
@@ -50,16 +52,16 @@ void Renderer::Initialize(AssetManager &assetManager) {
     char* vertexShaderCode = assetManager.GetAsset("Shaders/Shader.vert");
     char* fragmentShaderCode = assetManager.GetAsset("Shaders/Shader.frag");
 
-    char* data = assetManager.GetAsset("Resources/cottage_obj.bin");
-
-    std::strtol(data, nullptr, 2);
-
     shader.AddShader(vertexShaderCode, VERTEX_SHADER);
     shader.AddShader(fragmentShaderCode, FRAGMENT_SHADER);
     shader.linkProgram();
 
     delete vertexShaderCode;
     delete fragmentShaderCode;
+
+
+    //LoadNormal();
+    LoadBinary();
 }
 
 void Renderer::LoadNormal() {
@@ -103,4 +105,26 @@ void Renderer::LoadNormal() {
 
 void Renderer::LoadBinary() {
 
+    char* asset = assetManager.GetBinaryAsset("Resources/cottage_obj.bin");
+
+    unsigned int vertexCount = ((unsigned int*)asset)[0];
+    unsigned int indexCount = ((unsigned int*)asset)[1];
+
+    float* data = (float*)(((unsigned int*)asset) + 2);
+    unsigned int* indices = (unsigned int *)(data + vertexCount * 5);
+
+    char* texture = assetManager.GetAsset("textures#tcf_etc2/wood.pkm");
+
+    Material material = Material(texture);
+    fasterObject = new FasterObject(material, glm::vec3(0, -20, -80), glm::vec3(0, 60, 0), glm::vec3(1));
+    fasterObject->data = data;
+    fasterObject->indices = indices;
+
+    fasterObject->vertexCount = vertexCount;
+    fasterObject->indexCount = indexCount;
+
+    fasterObject->Initialize();
+
+    delete texture;
+    delete asset;
 }
