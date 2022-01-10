@@ -4,6 +4,7 @@
 #include <android/log.h>
 #include <GLES3/gl3.h>
 
+#include <glm/gtx/rotate_vector.hpp>
 #include "OBJ_Loader.h"
 
 
@@ -127,4 +128,14 @@ void Renderer::LoadBinary() {
 
     delete texture;
     delete asset;
+}
+
+void Renderer::Scroll(float distanceX, float distanceY) {
+    scrollX += distanceX * 0.00001f;
+    scrollY += distanceY * 0.00001f;
+    fasterObject->Rotate(glm::vec3(distanceY * 0.1f, distanceX * 0.1f, 0.0f));
+}
+
+void Renderer::Zoom(float zoomFactor) {
+    camera.Position = glm::mix(camera.Position, glm::vec3(0,0,0), zoomFactor);
 }

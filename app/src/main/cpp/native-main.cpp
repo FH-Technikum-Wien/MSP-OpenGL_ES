@@ -30,3 +30,19 @@ Java_at_davidpgl_opengles_MyGLRenderer_onDrawFrameNative(JNIEnv *env, jobject th
         return;
     application.Tick();
 }
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_at_davidpgl_opengles_MainActivity_onScrollNative(JNIEnv *env, jobject thiz, jfloat distance_x,
+                                                      jfloat distance_y) {
+    application.HandleScroll(distance_x, distance_y);
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_at_davidpgl_opengles_MyGLSurfaceView_onScaleNative(JNIEnv *env, jobject thiz,
+                                                        jfloat scale_factor) {
+    application.HandleScale(scale_factor);
+}

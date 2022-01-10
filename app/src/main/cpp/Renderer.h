@@ -23,6 +23,10 @@ public:
 
     void Render();
 
+    void Scroll(float distanceX, float distanceY);
+
+    void Zoom(float zoomFactor);
+
 private:
     AssetManager assetManager;
 
@@ -34,4 +38,7 @@ private:
 
     float screenWidth = 0.0f;
     float screenHeight = 0.0f;
+
+    float scrollX = 0.0f;
+    float scrollY = 0.0f;
 };

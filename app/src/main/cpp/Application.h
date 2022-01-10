@@ -9,6 +9,9 @@ public:
     void Update(double deltaTime);
     void FixedUpdate(double fixeDeltaTime);
 
+    void HandleScroll(float distanceX, float distanceY);
+    void HandleScale(float scaleFactor);
+
     void SetScreenSize(float screenWidth, float screenHeight);
 
 private:

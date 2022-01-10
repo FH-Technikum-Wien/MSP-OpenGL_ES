@@ -46,7 +46,7 @@ void Application::Tick(){
         double time = deltaAccumulator / frames;
         deltaAccumulator = 0;
         frames = 0;
-        LOGI("Render time: %f milliseconds", time * 1e3);
+        //LOGI("Render time: %f milliseconds", time * 1e3);
     }
 }
 
@@ -60,4 +60,13 @@ void Application::FixedUpdate(double fixeDeltaTime) {
 
 void Application::SetScreenSize(float screenWidth, float screenHeight) {
     renderer.SetScreenSize(screenWidth, screenHeight);
+}
+
+void Application::HandleScroll(float distanceX, float distanceY) {
+    renderer.Scroll(distanceX, distanceY);
+}
+
+void Application::HandleScale(float scaleFactor) {
+    LOGI("Zoom detected");
+    renderer.Zoom(scaleFactor);
 }
