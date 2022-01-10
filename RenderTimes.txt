@@ -1,10 +1,24 @@
-16.644115
-16.654426
-16.667600
-16.683250
-16.644705
-16.686098
-16.686016
-16.641557
-16.740550
-16.628951
+Normal:
+16.714459 milliseconds
+16.605705 milliseconds
+16.689500 milliseconds
+16.672083 milliseconds
+16.627770 milliseconds
+16.687383 milliseconds
+16.661738 milliseconds
+16.649902 milliseconds
+16.683400 milliseconds
+16.639443 milliseconds
+16.679867 milliseconds
+Binary:
+16.655197 milliseconds
+16.654738 milliseconds
+16.680667 milliseconds
+16.666700 milliseconds
+16.674016 milliseconds
+16.699083 milliseconds
+16.599525 milliseconds
+16.736885 milliseconds
+16.619344 milliseconds
+16.674117 milliseconds
+16.657049 milliseconds

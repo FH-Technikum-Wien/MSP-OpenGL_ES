@@ -1,10 +1,23 @@
-90.139000
-121.872000
-137.668000
-97.141000
-100.120000
-106.088000
-79.314000
-82.494000
-87.986000
-99.527000
+Normal:
+103.308000 milliseconds
+87.629000 milliseconds
+95.689000 milliseconds
+108.820000 milliseconds
+100.151000 milliseconds
+96.253000 milliseconds
+104.102000 milliseconds
+101.197000 milliseconds
+104.481000 milliseconds
+107.015000 milliseconds
+88.501000 milliseconds
+Binary:
+71.125000 milliseconds
+61.958000 milliseconds
+70.312000 milliseconds
+79.923000 milliseconds
+61.043000 milliseconds
+50.201000 milliseconds
+64.888000 milliseconds
+57.147000 milliseconds
+60.978000 milliseconds
+55.842000 milliseconds
