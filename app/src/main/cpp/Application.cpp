@@ -62,11 +62,10 @@ void Application::SetScreenSize(float screenWidth, float screenHeight) {
     renderer.SetScreenSize(screenWidth, screenHeight);
 }
 
-void Application::HandleScroll(float distanceX, float distanceY) {
-    renderer.Scroll(distanceX, distanceY);
+void Application::HandleScroll(float distanceX) {
+    renderer.Scroll(distanceX);
 }
 
-void Application::HandleScale(float scaleFactor) {
-    LOGI("Zoom detected");
-    renderer.Zoom(scaleFactor);
+void Application::HandleScale(float distanceY) {
+    renderer.Zoom(distanceY);
 }

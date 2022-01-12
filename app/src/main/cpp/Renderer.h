@@ -23,7 +23,7 @@ public:
 
     void Render();
 
-    void Scroll(float distanceX, float distanceY);
+    void Scroll(float distanceX);
 
     void Zoom(float zoomFactor);
 
@@ -40,5 +40,6 @@ private:
     float screenHeight = 0.0f;
 
     float scrollX = 0.0f;
-    float scrollY = 0.0f;
+    float zoom = 0.0f;
+    glm::vec3 cameraStartPosition = camera.Position;
 };

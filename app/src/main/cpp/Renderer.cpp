@@ -90,7 +90,7 @@ void Renderer::LoadNormal() {
 
     char* texture = assetManager.GetAsset("textures#tcf_etc2/wood.pkm");
     Material material = Material(texture);
-    object = new Object(material, glm::vec3(0, -20, -80), glm::vec3(0, 60, 0), glm::vec3(1));
+    object = new Object(material, glm::vec3(0, -30, -80), glm::vec3(0, 60, 0), glm::vec3(1));
     object->vertices = vertices->data();
     object->indices = indices->data();
     object->uvs = uvs->data();
@@ -117,7 +117,7 @@ void Renderer::LoadBinary() {
     char* texture = assetManager.GetAsset("textures#tcf_etc2/wood.pkm");
 
     Material material = Material(texture);
-    fasterObject = new FasterObject(material, glm::vec3(0, -20, -80), glm::vec3(0, 60, 0), glm::vec3(1));
+    fasterObject = new FasterObject(material, glm::vec3(0, -30, -80), glm::vec3(0, 60, 0), glm::vec3(1));
     fasterObject->data = data;
     fasterObject->indices = indices;
 
@@ -130,12 +130,12 @@ void Renderer::LoadBinary() {
     delete asset;
 }
 
-void Renderer::Scroll(float distanceX, float distanceY) {
+void Renderer::Scroll(float distanceX) {
     scrollX += distanceX * 0.00001f;
-    scrollY += distanceY * 0.00001f;
-    fasterObject->Rotate(glm::vec3(distanceY * 0.1f, distanceX * 0.1f, 0.0f));
+    fasterObject->Rotate(glm::vec3(0.0f, -distanceX * 0.1f, 0.0f));
 }
 
 void Renderer::Zoom(float zoomFactor) {
-    camera.Position = glm::mix(camera.Position, glm::vec3(0,0,0), zoomFactor);
+    zoom += zoomFactor * 0.05f;
+    camera.Position = glm::mix(cameraStartPosition, glm::vec3(0,0,0), zoom);
 }
